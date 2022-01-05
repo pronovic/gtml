@@ -1,0 +1,17 @@
+# Standardized gitattributes for a Python repository
+# Taken from: https://github.com/alexkaratarakis/gitattributes
+# See also: https://stackoverflow.com/a/10855862/2907667
+
+# Common settings that generally should always be used with your language specific settings
+
+# Auto detect text files and force to LF line endings
+# https://www.davidlaing.com/2012/09/19/customise-your-gitattributes-to-become-a-git-ninja/
+* text eol=lf
+
+#
+# The above will handle all files NOT found below
+#
+
+gtml text diff=perl
+*.pl text diff=perl
+*.pm text diff=perl
