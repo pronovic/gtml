@@ -12,6 +12,10 @@
 # The above will handle all files NOT found below
 #
 
+# Source Code
 gtml text diff=perl
 *.pl text diff=perl
 *.pm text diff=perl
+
+# Graphics
+*.gif      binary
