@@ -1,12 +1,12 @@
 # GTML - an HTML pre-processor
-                                      
-GTML is a simple HTML pre-processor written in Perl.  It was designed in the 1990s for a world when HTML files were still regularly maintained by hand.  
+
+GTML is a simple yet powerful HTML pre-processor written in Perl.  Its syntax is very close to the C language preprocessor, and it supports macros, conditional processing, file inclusion, sitemap generation, and more.  It was designed in the 1990s, for a world where HTML files were still regularly maintained by hand, but some of us still find it useful today.
 
 ## History
 
 GTML was originally written in 1996 by Gihan Perera and was enhanced in starting in 1999 by Bruno Beaufils.  In 2004, Andrew E. Schulman took it over and moved the code to [SourceForge](https://gtml.sourceforge.net), where older releases still live today.  I have maintained the [Debian package for GTML](https://salsa.debian.org/debian/gtml) since 2010.  In 2014, Andrew communicated to me that he had abandoned the code, so I began to maintain the Debian packages idependently.  In early 2022, Bruno and I got some questions about GTML from a user.  I decided to fork the code to GitHub so there would be a real home for it again.  
 
-The [`docs/HISTORY.md`](docs/HISTORY.md) file contains some additional history taken from the original `README` file on SourceForge.  The documentation below is also taken from the original `README` file, with minor adjustments to use Markdown.  The original webpage SourceForge is maintained using GTML itself. The source code is found in [`docs/sourceforge/src`](docs/sourceforge/src) directory.
+The [`HISTORY.md`](docs/HISTORY.md) file contains some additional history taken from the original `README` file on SourceForge.  The original website on SourceForge is maintained using GTML itself, and the source code for that website is found in the [`docs/sourceforge/src`](docs/sourceforge/src) directory.
 
 ## How does it work?
 
@@ -41,34 +41,5 @@ Here are some of the things you can do with GTML:
 - Define your own characters translations, so that you may easily input your non-ASCII characters into GTML source
 - Embed Perl or shell code into your source, so that you may easily generate pages with computed information
 - Generate pages with all superfluous HTML code removed, so that readers retrieve them faster and may save bandwidth
-       
-## Running GTML
 
-GTML source files end in `.gtm` (or `.gtml`), not `.html`. If you're using GTML on existing HTML files, simply rename them with the appropriate ending.  
-
-GTML is run from the command line, like this:
-
-```
-$ gtml fred.gtm harry.gtm bill.gtm
-```
-
-The output of this command will be in `fred.html`, `harry.html` and `bill.html`.
-   
-If you have a GTML project file, you include this on the command line.  In this case, it's not necessary to list any of the files in the project as well.
-   
-Remember that you can use `-D` on the command line to create named constants. You can have as many `-D` options as you like. Make sure they appear before the file names to which they apply. For example, if you say:
-
-```
-$ gtml -DNAME=Fred fred.gtm harry.gtm -DTYPE=car bill.gtm
-```
-
-then `NAME` is defined for all three files and `TYPE` is defined for `bill.gtm` only.
-   
-By default, GTML will try to process some project file. It will look at these configuration files in this order:
-
-- `$HOME/.gtmlrc`
-- `$HOME/gtml.conf`
-- `.gtmlrc`
-- `gtml.conf`
-       
-Those files, if they exist, are parsed before command line is processed.
+See [REFERENCE.md](docs/REFERENCE.md) for a complete description of these features and how to use them.

@@ -5,6 +5,7 @@ Version 3.6.0     unreleased
 	* Convert README to README.md, add background info, and extract docs/HISTORY.md.
 	* Move most existing files and documentation underneath docs/sourceforge.
 	* Create Changelog based on the original NEWS.html from SourceForge.
+	* Create docs/REFERENCE.md based on the original gtml_ref.html file.
 
 Version 3.5.4 		29 Oct 2004
 
