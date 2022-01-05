@@ -9,6 +9,39 @@ GTML features fall into four main areas, and we'll look at them in this order:
 - Special _named constants_ generated or used by GTML.
 - Command-line options
 
+Before we dive in, there's also a quick summary to get you started.
+
+## Quick Summary
+
+GTML source files end in `.gtm` (or `.gtml`), not `.html`. If you're using GTML on existing HTML files, simply rename them with the appropriate ending.
+
+GTML is run from the command line, like this:
+
+```
+$ gtml fred.gtm harry.gtm bill.gtm
+```
+
+The output of this command will be in `fred.html`, `harry.html` and `bill.html`.
+
+If you have a GTML project file, you include this on the command line.  In this case, it's not necessary to list any of the files in the project as well.
+
+You can use `-D` on the command line to create named constants. You can have as many `-D` options as you like. Make sure they appear before the file names to which they apply. For example, if you say:
+
+```
+$ gtml -DNAME=Fred fred.gtm harry.gtm -DTYPE=car bill.gtm
+```
+
+then `NAME` is defined for all three files and `TYPE` is defined for `bill.gtm` only.
+
+By default, GTML will try to process some project file. It will look at these configuration files in this order:
+
+- `$HOME/.gtmlrc`
+- `$HOME/gtml.conf`
+- `.gtmlrc`
+- `gtml.conf`
+
+Those files, if they exist, are parsed before command line is processed.
+
 ## Commands
 
 The original syntax of GTML was stolen shamelessly from the C language pre-processor, and has been adapted to suit web site management. It supports the following commands:

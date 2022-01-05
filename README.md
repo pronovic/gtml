@@ -4,7 +4,7 @@ GTML is a simple yet powerful HTML pre-processor written in Perl.  Its syntax is
 
 ## History
 
-GTML was originally written in 1996 by Gihan Perera and was enhanced in starting in 1999 by Bruno Beaufils.  In 2004, Andrew E. Schulman took it over and moved the code to [SourceForge](https://gtml.sourceforge.net), where older releases still live today.  I have maintained the [Debian package for GTML](https://salsa.debian.org/debian/gtml) since 2010.  In 2014, Andrew communicated to me that he had abandoned the code, so I began to maintain the Debian packages idependently.  In early 2022, Bruno and I got some questions about GTML from a user.  I decided to fork the code to GitHub so there would be a real home for it again.  
+GTML was originally written in 1996 by Gihan Perera and was enhanced starting in 1999 by Bruno Beaufils.  In 2004, Andrew E. Schulman took it over and moved the code to [SourceForge](http://gtml.sourceforge.net), where older releases still live today.  I have maintained the [Debian package for GTML](https://salsa.debian.org/debian/gtml) since 2010.  In 2014, Andrew communicated to me that he had abandoned the code, so I began to maintain the Debian packages idependently.  In early 2022, Bruno and I got some questions about GTML from a user.  I decided to fork the code to GitHub so there would be a real home for it again.  
 
 The [`HISTORY.md`](docs/HISTORY.md) file contains some additional history taken from the original `README` file on SourceForge.  The original website on SourceForge is maintained using GTML itself, and the source code for that website is found in the [`docs/sourceforge/src`](docs/sourceforge/src) directory.
 
@@ -37,7 +37,7 @@ Here are some of the things you can do with GTML:
 - Use conditional commands to create different versions of the output under different circumstances
 - Generate output to different directories to generate different versions of your site (for example, a frames version and a non-frames version)
 - Change extensions of output files from `.html` to whatever you want, so that you may, for instance, use MultiViews options of Apache server, or create non-HTML files
-- Guard special characters `<', `>`, and `&` in normal text so that they don't get confused with HTML commands
+- Guard special characters `<`, `>`, and `&` in normal text so that they don't get confused with HTML commands
 - Define your own characters translations, so that you may easily input your non-ASCII characters into GTML source
 - Embed Perl or shell code into your source, so that you may easily generate pages with computed information
 - Generate pages with all superfluous HTML code removed, so that readers retrieve them faster and may save bandwidth
