@@ -1,0 +1,51 @@
+#define TITLE GTML Credits
+#include "header"
+
+<p>I would like to thank some people who helped, and contributed in the
+development of _gtml_. 
+
+<p>First of all I'd like to thank Gihan Perera, who is the initial author of
+_gtml_, and who did a really great job, and who authorized me to take over
+_gtml_ since it seems he does not have time to enhance it, and a more
+important thing, authorized me to distribute it under the GPL terms. <b>He</b>
+is the guy to thanks, the real author of _gtml_.
+
+<p>Then I would like to thank people who helped me correct, or enhance
+_gtml_:
+<ul>
+  <li>Magog, helped me fixed a bug on directory creation, sent me Swedish
+      support, and helped me grow my TODO list ;-) ; 
+  <li>Philippe Marquet (aka PhM), gave me a very impressive list of features
+      to add, with some advices on how to do it. Almost all of what he asked has
+      been added, so far, as least makefile support, and sitemap
+      generation. He also sent me some of bug reports.
+  <li>Jens Bloch Helmers, sent me Norwegian support, a bug report on filename
+      aliases, and an idea for my TODO list ;  
+  <li>Simone Piunno (aka Pioppo), sent me Italian support ;
+  <li>Gert-Jan Brink, sent me Dutch support ;
+  <li>Uwe Arzt, sent me German support, as well as the base of sitemap generation
+      code ; 
+  <li>Harald Drangmeister, sent me bug reports, and asked me about the
+      TITLE_CURRENT macro ;
+  <li>Michael M Slusarz, sent me a patch to add embedded Perl code, which
+      gave me the idea of the embedded system command ;
+  <li>Wim Niemans Ri, sent me a lot of features that he added to his own _gtml_,
+      from <m>#define+</m> to extensions selections ideas, via warning and
+      error reports ;
+  <li>Ken Guest, asked me for the <m>$ddth</m> feature in timestamps, sent me
+      irish support, asked me about a better report <em>verbosity</em>
+      control, and corrected english in the web pages (which was a
+      <strong>great</strong> idea, hope I did not introduce too new mistakes
+      since :) ; 
+  <li>Andrew Greig, sent me the weekday patch, and corrected the <m>$ddth</m>
+      english computation ;  
+  <li>Bob Ham, sent me bug report about warning report format ;
+  <li>Frank Boehme, sent me bug report about compression.
+</ul>
+
+<p>I hope I forgot nobody.
+
+<p>Do not hesitate to correct me if needed, and to send bug reports, or documentation
+mistakes (from typo errors, to bad English construction) reports.
+
+#include "footer"

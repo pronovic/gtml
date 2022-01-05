@@ -1,0 +1,62 @@
+    </td>
+  </tr>
+</table>
+</center>
+
+#ifndef TEXT_ONLY
+<center>
+<table borde="0" width="100%" align="center">
+  <tr>
+    <td align="left">
+    <font size="2" face="Arial,Helvetica" color="#000066">
+    This page has been accessed <!--#echo var="URL_COUNT"--> times since
+    <!--#echo var="URL_COUNT_RESET"-->.
+    </font>
+    </td>
+    <td align="right">
+    <font size="2" face="Arial,Helvetica">
+#ifdef LINK_PREV
+    <url>[[LINK_PREV]],&lt;&lt; [[TITLE_PREV]]</url>
+#endif
+    &nbsp;
+    <url>[[SITEMAP]],Sitemap</url>
+    &nbsp;
+#ifdef LINK_NEXT
+    <url>[[LINK_NEXT]],[[TITLE_NEXT]] &gt;&gt;</url>
+#endif
+    </font>
+    </td>
+  </tr>
+</table>
+</center>
+#endif
+
+<center>
+<hr width="100%">
+<table align="center" width="100%" border="0">
+  <tr>
+    <td align="left" valign="top">
+    <font size="2" face="Arial,Helvetica" color="#000066">
+#ifndef TEXT_ONLY
+    <url>_www_,GTML home page</url><br>
+#endif
+    <em>[[MTIMESTAMP]]</em><br>
+    </font>
+    </td>
+    <td align="right">
+    <font size="2" face="Arial,Helvetica" color="#000066">
+    Copyright <c> 1996-1999 <url>http://www.pobox.com/~gihan,Gihan Perera</url>&nbsp;
+    (<mail>gihan@pobox.com</mail>)<br>
+    Copyright <c> 1999 <url>http://www.lifl.fr/~beaufils,Bruno Beaufils</url>&nbsp;
+    (<mail>beaufils@lifl.fr</mail>)<br>
+    Copyright <c> 2004 <url>http://home.comcast.net/~andrex,Andrew E. Schulman</url>&nbsp;
+    (<mail>schulman@users.sourceforge.net</mail>)<br>
+    </font>
+    </td>
+  </tr>
+</table>
+</center>
+
+</body>
+
+</html>

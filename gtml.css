@@ -1,0 +1,46 @@
+/* $Id: gtml.css..gtm,v 1.1 1999/09/02 02:17:01 beaufils Exp $ */
+/* Style for GTML documentation. */
+
+/*
+   I do not use them as far as I want until Netscape is so bugged. Nobody will
+   be able to render the pages properly. :-(((
+*/
+BODY
+{
+  background : #ffffff;
+  color : #000033;
+}
+
+A:link, A:visited
+{
+  font-weight : bold;
+  color : #990000;
+  text-decoration : none;
+}
+
+H2
+{
+  font-family : sans-serif;
+  background : #ffffcc;
+  color : #000066;
+  width : 100%;
+  padding : 5;
+  border : thin;
+  font-size : large;
+}
+
+H3
+{
+  font-family : sans-serif;
+  color : #000066;
+}
+
+H4
+{
+  font-family : sans-serif;
+  color : #000066;
+}
+
+/* Local Variables: */
+/* mode: html-helper-mode */
+/* End: */

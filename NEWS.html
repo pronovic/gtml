@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html lang="en">
+
+<head>
+   <title>GTML Revision history</title>
+   <meta name="Author" content="Andrew E. Schulman,Bruno Beaufils, Gihan Perera">
+   <meta name="Generator" content="GTML 3.5.4">
+   <meta name="Keywords" content=
+     "HTML pre-processor, perl, script, web site design, templates, free
+      software, GPL">
+   <meta name="Description" content=
+     "GTML is a simple yet powerful HTML pre-processor, which has a lot of
+      features to design AND maintain entire web sites. It's syntax is very
+      close to the C language preprocessor one. Some of its features are: use
+      of macros, conditionnal processing, file inclusion, sitemap generation
+      and much more. It is written in perl.">
+   <link rel="Begin" type="text/html" href="http://sourceforge.net/projects/gtml/">
+   <link rel="Next" type="text/html" href="CREDITS.html">
+   <link rel="Prev" href="gtml_ref.html">
+   <link rel="Stylesheet" type="text/css" href="gtml.css">
+</head>
+
+<body text="#000033">
+
+<!-- ---------- Title line ---------- -->
+
+<center>
+  <table border="0" width="95%" bgcolor="#ffffcc" cellpadding="5" cellspacing="0" align="center">
+    <tr>
+      <td align="left">
+      <font size="2" face='Arial,Helvetica'>
+      <a href="gtml_ref.html">&lt;&lt;</a>
+      &nbsp;
+      </font>
+      </td>
+      <td align="center"><font color="#000066" face="Verdana,Arial,Helvetica" size="+3">
+      <b>GTML Revision history</b>
+      </td>
+      <td align="right">
+      <font size="2" face='Arial,Helvetica'>
+      &nbsp;
+      <a href="CREDITS.html">&gt;&gt;</a>
+      </font>
+      </td>
+    </tr>
+</table>
+</center>
+
+<center>
+<table width="75%" border="0" cellpadding="10">
+  <tr valign="top">
+    <td>
+
+<p><table>
+<tr valign="top"><td>1.0
+  </td><td>&nbsp;</td><td valign="top">8-Jun-1996
+  </td><td><ul><li>First release.
+</ul></td></tr>
+
+<tr valign="top"><td>1.01
+  </td><td>&nbsp;</td><td valign="top">14-Jun-1996
+  </td><td><ul><li>Added #newdefine.
+  <li>Allow undefined constants.
+</ul></td></tr>
+
+<tr valign="top"><td>1.02
+  </td><td>&nbsp;</td><td valign="top">14-Jul-1996
+  </td><td><ul><li>Support path names in project file.
+</ul></td></tr>
+
+<tr valign="top"><td>1.03
+  </td><td>&nbsp;</td><td valign="top">1-Sep-1996
+   </td><td><ul><li>No quotation marks in #include file name is OK.
+   <li>Allow ../ to higher levels than starting directory.
+</ul></td></tr>
+
+<tr valign="top"><td>2.0
+  </td><td>&nbsp;</td><td valign="top">24-Nov-1996
+  </td><td><ul><li>Added lots of new features.
+</ul></td></tr>
+
+<tr valign="top"><td>2.01
+  </td><td>&nbsp;</td><td valign="top">30-Nov-1996
+  </td><td><ul><li>Commands can be inside comments.
+  <li>User-specified substitute delimiters.
+</ul></td></tr>
+
+<tr valign="top"><td>2.02
+  </td><td>&nbsp;</td><td valign="top">10-Feb-1997
+  </td><td><ul><li>Fixed #ifdef nesting. (Alan B. Chamberlin)
+</ul></td></tr>
+
+<tr valign="top"><td>2.1
+  </td><td>&nbsp;</td><td valign="top">23-Jul-1997
+  </td><td><ul><li>Allow subs in #include.
+  <li>Don't downshift file names. (Suggestions from Mike Sendall).
+</ul></td></tr>
+
+<tr valign="top"><td>2.2
+  </td><td>&nbsp;</td><td valign="top">15-Aug-1997
+  </td><td><ul><li>"allsource" command in project file.
+</ul></td></tr>
+
+<tr valign="top"><td>2.21
+  </td><td>&nbsp;</td><td valign="top">2-Feb-1998
+  </td><td><ul><li>Simplified auto-generated navigation links.
+</ul></td></tr>
+
+<tr valign="top"><td>2.22
+  </td><td>&nbsp;</td><td valign="top">25-Jul-1998
+  </td><td><ul><li>Handles years past 2000.
+</ul></td></tr>
+
+<tr valign="top"><td>2.3
+  </td><td>&nbsp;</td><td valign="top">19-Feb-1999
+  </td><td><ul><li> Enhanced #define (Wim Niemans Ri).
+</ul></td></tr>
+
+<tr valign="top"><td>3.0
+  </td><td>&nbsp;</td><td valign="top">22-Jun-1999
+  </td><td><ul><li>Added mtimestamp.
+  <li>Added usage of "LANGUAGE".
+  <li>Added usage of "EXTENSION".
+  <li>Added filename alias definitions.
+  <li>Fixed a bug with links and subdir.
+  <li>Fixed a bug with entities.
+</ul></td></tr>
+
+<tr valign="top"><td>3.1
+  </td><td>&nbsp;</td><td valign="top">1-Jul-1999
+  </td><td><ul><li>Added definitions of all environment variables.
+  <li>Added substitution at definition time for OUTPUT_DIR, INCLUDE_PATH and
+  EXTENSION.
+</ul></td></tr>
+
+<tr valign="top"><td>3.2
+  </td><td>&nbsp;</td><td valign="top">4-Jul-1999
+  </td><td><ul><li>Added usage of "FAST_GENERATION" to process only files which sources
+  are newer than output.
+</ul></td></tr>
+
+<tr valign="top"><td>3.3
+  </td><td>&nbsp;</td><td valign="top">7-Jul-1999
+  </td><td><ul><li>Fixed a bug with directory creation, thanks to Magog.
+  <li>Added undefined constants in project file, a PhM request.
+  <li>Added the -F command line argument, to process only single file,
+     enabling the use of <code>make</code> (On a suggestion from PhM).
+  <li>Added the GNU -h, --help and --version command line arguments.
+</ul></td></tr>
+
+<tr valign="top"><td>3.31
+  </td><td>&nbsp;</td><td valign="top">7-Jul-1999
+  </td><td><ul><li>Added Norwegian language support.
+</ul></td></tr>
+
+<tr valign="top"><td>3.32
+  </td><td>&nbsp;</td><td valign="top">8-Jul-1999
+  </td><td><ul><li>Fixed a bug with filename aliases.
+  <li>Added Italian and Swedish support.
+</ul></td></tr>
+
+<tr valign="top"><td>3.33
+  </td><td>&nbsp;</td><td valign="top">9-Jul-1999
+  </td><td><ul><li>Fixed a serious bug with filename aliases (thank's to Jens).
+</ul></td></tr>
+
+<tr valign="top"><td>3.34
+  </td><td>&nbsp;</td><td valign="top">10-Jul-1999
+  </td><td><ul><li>Added Dutch support.
+</ul></td></tr>
+
+<tr valign="top"><td>3.3.5
+  </td><td>&nbsp;</td><td valign="top">13-Jul-1999
+  </td><td><ul><li>Fixed another bug with filename aliases.
+</ul></td></tr>
+
+<tr valign="top"><td>3.3.6
+  </td><td>&nbsp;</td><td valign="top">14-Jul-1999
+  </td><td><ul><li>Added German support.
+</ul></td></tr>
+
+<tr valign="top"><td>3.5.0
+  </td><td>&nbsp;</td><td valign="top">2-Sep-1999
+  </td><td><ul><li>Fixed a lot of bugs, while rewritting the code.
+  <li>Added makefile generation.
+  <li>Enhanced timestamp support.
+  <li>Added customizable sitemap generation.
+  <li>Modified ouput file extension setting.
+  <li>Added characters translation.
+  <li>Added embedded Perl code possibility.
+  <li>Added embedded shell command output possibility.
+  <li>Documented output compression.
+  <li>Updated documentation.
+  <li>Added some new predefined constants.
+  <li>Added macro with arguments.
+  <li>Enhanced conditionals.
+  <li>Enhanced inclusion in project files.
+  <li>Enhanced timestamps support.
+</ul></td></tr>
+
+<tr valign="top"><td>3.5.1
+  </td><td>&nbsp;</td><td valign="top">2-Sep-1999
+  </td><td><ul><li>Fixed a bug with PATHNAME creation, and thus included file searching.
+</ul></td></tr>
+
+<tr valign="top"><td>3.5.2
+  </td><td>&nbsp;</td><td valign="top">8-Sep-1999
+  </td><td><ul><li>Fixed a bug with conditional output (if/elsif).
+  <li>Added irish support.
+  <li>Remove include file name report.
+  <li>All documentations has been corrected thanks to Ken Guest.
+</ul></td></tr>
+
+<tr valign="top"><td>3.5.3
+  </td><td>&nbsp;</td><td valign="top">13-Sep-1999
+  </td><td><ul><li>Fixed a bug with compression.
+  <li>Better $ddth (english) computation.
+  <li>Exit status changed (0 for warnings and OK, 1 for errors).
+</ul></td></tr>
+
+<tr valign="top"><td>3.5.4
+  </td><td>&nbsp;</td><td valign="top">29-Oct-2004
+  </td><td><ul><li>Fixed several 'if'-related bugs:
+  <ul>
+    <li>In nested #if's, when the outer condition was false the first #endif would end the whole set of #if's.
+    <li>#if true ... #elsif false ... #else would execute the #else clause.
+    <li>There was no error checking for missing #if's, multiple #else's, or missing #endif's.
+  </ul>
+  <li>Macros in INCLUDE_PATH are now resolved.
+</ul></td></tr>
+    
+</table>
+
+    </td>
+  </tr>
+</table>
+</center>
+
+<center>
+<table borde="0" width="100%" align="center">
+  <tr>
+    <td align="left">
+    <font size="2" face="Arial,Helvetica" color="#000066">
+    This page has been accessed <!--#echo var="URL_COUNT"--> times since
+    <!--#echo var="URL_COUNT_RESET"-->.
+    </font>
+    </td>
+    <td align="right">
+    <font size="2" face="Arial,Helvetica">
+    <a href="gtml_ref.html">&lt;&lt; Reference</a>
+    &nbsp;
+    <a href="sitemap.html">Sitemap</a>
+    &nbsp;
+    <a href="CREDITS.html">Credits  &gt;&gt;</a>
+    </font>
+    </td>
+  </tr>
+</table>
+</center>
+
+<center>
+<hr width="100%">
+<table align="center" width="100%" border="0">
+  <tr>
+    <td align="left" valign="top">
+    <font size="2" face="Arial,Helvetica" color="#000066">
+    <a href="http://sourceforge.net/projects/gtml/">GTML home page</a><br>
+    <em>Last modification: 2004/10/29 at 10:31</em><br>
+    </font>
+    </td>
+    <td align="right">
+    <font size="2" face="Arial,Helvetica" color="#000066">
+    Copyright &copy; 1996-1999 <a href="http://www.pobox.com/~gihan">Gihan Perera</a>&nbsp;
+    (<a href="mailto:gihan@pobox.com">gihan@pobox.com</a>)<br>
+    Copyright &copy; 1999 <a href="http://www.lifl.fr/~beaufils">Bruno Beaufils</a>&nbsp;
+    (<a href="mailto:beaufils@lifl.fr">beaufils@lifl.fr</a>)<br>
+    Copyright &copy; 2004 <a href="http://home.comcast.net/~andrex">Andrew E. Schulman</a>&nbsp;
+    (<a href="mailto:schulman@users.sourceforge.net">schulman@users.sourceforge.net</a>)<br>
+    </font>
+    </td>
+  </tr>
+</table>
+</center>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+// $Id: commands,v 1.1 1999/09/02 02:17:01 beaufils Exp $
+//
+// Definition of some macros used in GTML documentation.
+//
+
+define h2             <h2>
+define /h2            </h2>
+
+define h3             <h3>
+define /h3            </h3>
+
+define h4             <h4>
+define /h4            </h4>
+
+define ext            <strong>
+define /ext           </strong>
+
+define car            `<code><strong>
+define /car           </strong></code>'
+
+define file           <code><strong>
+define /file          </strong></code>
+
+define cmd            <code>
+define /cmd           </code>
+
+define label(arg)     <a name="arg"></a>
+define url(url,text)  <a href="url">text</a>
+define surl(url)      <a href="url">url</a>
+define mail(add)      <a href="mailto:add">add</a>
+
+define ul             <p><table>
+define vl             <tr valign="top"><td>
+define dl             </td><td>&nbsp;</td><td valign="top">
+define r1             </td><td><ul><li>
+define ri             <li>
+define /vl            </ul></td></tr>
+define /ul            </table>
+
+// End of commands.

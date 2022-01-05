@@ -1,0 +1,6 @@
+#define TITLE GTML sitemap
+#include "header"
+
+#toc
+
+#include "footer"

@@ -1,0 +1,184 @@
+#define TITLE GTML Revision history
+#include "header"
+
+[[ul]]
+[[vl]]1.0
+  [[dl]]8-Jun-1996
+  [[r1]]First release.
+[[/vl]]
+
+[[vl]]1.01
+  [[dl]]14-Jun-1996
+  [[r1]]Added #newdefine.
+  [[ri]]Allow undefined constants.
+[[/vl]]
+
+[[vl]]1.02
+  [[dl]]14-Jul-1996
+  [[r1]]Support path names in project file.
+[[/vl]]
+
+[[vl]]1.03
+  [[dl]]1-Sep-1996
+   [[r1]]No quotation marks in #include file name is OK.
+   [[ri]]Allow ../ to higher levels than starting directory.
+[[/vl]]
+
+[[vl]]2.0
+  [[dl]]24-Nov-1996
+  [[r1]]Added lots of new features.
+[[/vl]]
+
+[[vl]]2.01
+  [[dl]]30-Nov-1996
+  [[r1]]Commands can be inside comments.
+  [[ri]]User-specified substitute delimiters.
+[[/vl]]
+
+[[vl]]2.02
+  [[dl]]10-Feb-1997
+  [[r1]]Fixed #ifdef nesting. (Alan B. Chamberlin)
+[[/vl]]
+
+[[vl]]2.1
+  [[dl]]23-Jul-1997
+  [[r1]]Allow subs in #include.
+  [[ri]]Don't downshift file names. (Suggestions from Mike Sendall).
+[[/vl]]
+
+[[vl]]2.2
+  [[dl]]15-Aug-1997
+  [[r1]]"allsource" command in project file.
+[[/vl]]
+
+[[vl]]2.21
+  [[dl]]2-Feb-1998
+  [[r1]]Simplified auto-generated navigation links.
+[[/vl]]
+
+[[vl]]2.22
+  [[dl]]25-Jul-1998
+  [[r1]]Handles years past 2000.
+[[/vl]]
+
+[[vl]]2.3
+  [[dl]]19-Feb-1999
+  [[r1]] Enhanced #define (Wim Niemans Ri).
+[[/vl]]
+
+[[vl]]3.0
+  [[dl]]22-Jun-1999
+  [[r1]]Added mtimestamp.
+  [[ri]]Added usage of "LANGUAGE".
+  [[ri]]Added usage of "EXTENSION".
+  [[ri]]Added filename alias definitions.
+  [[ri]]Fixed a bug with links and subdir.
+  [[ri]]Fixed a bug with entities.
+[[/vl]]
+
+[[vl]]3.1
+  [[dl]]1-Jul-1999
+  [[r1]]Added definitions of all environment variables.
+  [[ri]]Added substitution at definition time for OUTPUT_DIR, INCLUDE_PATH and
+  EXTENSION.
+[[/vl]]
+
+[[vl]]3.2
+  [[dl]]4-Jul-1999
+  [[r1]]Added usage of "FAST_GENERATION" to process only files which sources
+  are newer than output.
+[[/vl]]
+
+[[vl]]3.3
+  [[dl]]7-Jul-1999
+  [[r1]]Fixed a bug with directory creation, thanks to Magog.
+  [[ri]]Added undefined constants in project file, a PhM request.
+  [[ri]]Added the -F command line argument, to process only single file,
+     enabling the use of <code>make</code> (On a suggestion from PhM).
+  [[ri]]Added the GNU -h, --help and --version command line arguments.
+[[/vl]]
+
+[[vl]]3.31
+  [[dl]]7-Jul-1999
+  [[r1]]Added Norwegian language support.
+[[/vl]]
+
+[[vl]]3.32
+  [[dl]]8-Jul-1999
+  [[r1]]Fixed a bug with filename aliases.
+  [[ri]]Added Italian and Swedish support.
+[[/vl]]
+
+[[vl]]3.33
+  [[dl]]9-Jul-1999
+  [[r1]]Fixed a serious bug with filename aliases (thank's to Jens).
+[[/vl]]
+
+[[vl]]3.34
+  [[dl]]10-Jul-1999
+  [[r1]]Added Dutch support.
+[[/vl]]
+
+[[vl]]3.3.5
+  [[dl]]13-Jul-1999
+  [[r1]]Fixed another bug with filename aliases.
+[[/vl]]
+
+[[vl]]3.3.6
+  [[dl]]14-Jul-1999
+  [[r1]]Added German support.
+[[/vl]]
+
+[[vl]]3.5.0
+  [[dl]]2-Sep-1999
+  [[r1]]Fixed a lot of bugs, while rewritting the code.
+  [[ri]]Added makefile generation.
+  [[ri]]Enhanced timestamp support.
+  [[ri]]Added customizable sitemap generation.
+  [[ri]]Modified ouput file extension setting.
+  [[ri]]Added characters translation.
+  [[ri]]Added embedded Perl code possibility.
+  [[ri]]Added embedded shell command output possibility.
+  [[ri]]Documented output compression.
+  [[ri]]Updated documentation.
+  [[ri]]Added some new predefined constants.
+  [[ri]]Added macro with arguments.
+  [[ri]]Enhanced conditionals.
+  [[ri]]Enhanced inclusion in project files.
+  [[ri]]Enhanced timestamps support.
+[[/vl]]
+
+[[vl]]3.5.1
+  [[dl]]2-Sep-1999
+  [[r1]]Fixed a bug with PATHNAME creation, and thus included file searching.
+[[/vl]]
+
+[[vl]]3.5.2
+  [[dl]]8-Sep-1999
+  [[r1]]Fixed a bug with conditional output (if/elsif).
+  [[ri]]Added irish support.
+  [[ri]]Remove include file name report.
+  [[ri]]All documentations has been corrected thanks to Ken Guest.
+[[/vl]]
+
+[[vl]]3.5.3
+  [[dl]]13-Sep-1999
+  [[r1]]Fixed a bug with compression.
+  [[ri]]Better $ddth (english) computation.
+  [[ri]]Exit status changed (0 for warnings and OK, 1 for errors).
+[[/vl]]
+
+[[vl]]3.5.4
+  [[dl]]29-Oct-2004
+  [[r1]]Fixed several 'if'-related bugs:
+  <ul>
+    <li>In nested #if's, when the outer condition was false the first #endif would end the whole set of #if's.
+    <li>#if true ... #elsif false ... #else would execute the #else clause.
+    <li>There was no error checking for missing #if's, multiple #else's, or missing #endif's.
+  </ul>
+  [[ri]]Macros in INCLUDE_PATH are now resolved.
+[[/vl]]
+    
+[[/ul]]
+
+#include "footer"

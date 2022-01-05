@@ -1,0 +1,58 @@
+// $Id: gtml.gtp,v 1.11 1999/09/09 00:06:34 beaufils Exp $
+//
+// Project file to construct GTML documentations.
+//
+
+define OPEN_DELIMITER  [[
+define CLOSE_DELIMITER ]]
+
+//
+// Basic shortcuts
+//
+definechar _gtml_       <code>GTML</code>
+definechar _new_        <img src="new.gif" alt="[** NEW **]">
+definechar _ftp_        http://sourceforge.net/project/showfiles.php?group_id=100737
+definechar _www_        http://sourceforge.net/projects/gtml/
+
+define __VERSION__ 3.5.4
+
+//
+// Process control
+//
+
+define OUTPUT_DIR ..
+
+mtimestamp Last modification: $yyyy/$MM/$dd at $hh:$mm
+
+include "tags"
+
+include "commands"
+
+//
+// Source files.
+//
+filename MAIN     gtml.gtm
+filename REF      gtml_ref.gtm
+filename NEWS     NEWS.gtm
+filename CREDITS  CREDITS.gtm
+filename SITEMAP  sitemap.gtm
+filename STYLE    gtml.css..gtm
+
+//
+// Documentation hierarchy
+//
+[[MAIN]]      1 Home
+[[REF]]       1 Reference
+[[NEWS]]      1 Revision history
+[[CREDITS]]   1 Credits 
+[[SITEMAP]]
+[[STYLE]]
+
+//hierarchy
+
+//define EXTENSION .txt.html 
+//define TEXT_ONLY
+
+//hierarchy
+
+// End of gtml.gtp.

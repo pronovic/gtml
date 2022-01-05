@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html lang="en">
+
+<head>
+   <title>[[TITLE]]</title>
+   <meta name="Author" content="Andrew E. Schulman,Bruno Beaufils, Gihan Perera">
+   <meta name="Generator" content="GTML [[__VERSION__]]">
+   <meta name="Keywords" content=
+     "HTML pre-processor, perl, script, web site design, templates, free
+      software, GPL">
+   <meta name="Description" content=
+     "GTML is a simple yet powerful HTML pre-processor, which has a lot of
+      features to design AND maintain entire web sites. It's syntax is very
+      close to the C language preprocessor one. Some of its features are: use
+      of macros, conditionnal processing, file inclusion, sitemap generation
+      and much more. It is written in perl.">
+#ifndef TEXT_ONLY
+   <link rel="Begin" type="text/html" href="_www_">
+#ifdef LINK_NEXT
+   <link rel="Next" type="text/html" href="[[LINK_NEXT]]">
+#endif
+#ifdef LINK_PREV
+   <link rel="Prev" href="[[LINK_PREV]]">
+#endif
+#endif
+   <link rel="Stylesheet" type="text/css" href="[[STYLE]]">
+</head>
+
+<body text="#000033">
+
+<!-- ---------- Title line ---------- -->
+
+<center>
+  <table border="0" width="95%" bgcolor="#ffffcc" cellpadding="5" cellspacing="0" align="center">
+    <tr>
+#ifndef TEXT_ONLY
+      <td align="left">
+      <font size="2" face='Arial,Helvetica'>
+#ifdef LINK_PREV
+      <a href="[[LINK_PREV]]">&lt;&lt;</a>
+#endif
+      &nbsp;
+      </font>
+      </td>
+#endif
+      <td align="center"><font color="#000066" face="Verdana,Arial,Helvetica" size="+3">
+      <b>[[TITLE]]</b>
+      </td>
+#ifndef TEXT_ONLY
+      <td align="right">
+      <font size="2" face='Arial,Helvetica'>
+      &nbsp;
+#ifdef LINK_NEXT
+      <a href="[[LINK_NEXT]]">&gt;&gt;</a>
+#endif
+      </font>
+      </td>
+#endif
+    </tr>
+</table>
+</center>
+
+<center>
+<table width="75%" border="0" cellpadding="10">
+  <tr valign="top">
+    <td>

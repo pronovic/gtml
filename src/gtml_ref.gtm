@@ -1,0 +1,989 @@
+#define TITLE GTML Reference Page
+#include "header"
+
+<p>This is the reference page for the HTML pre-processor _gtml_. It describes
+all the _gtml_ features and commands in detail. For more information about
+getting _gtml_, see <url>[[MAIN]], the main _gtml_ page</url>.
+
+<label>toc</label>
+<p>_gtml_ features fall into four main areas, and we'll look at them
+in this order:
+
+<ul>
+  <li><url>#commands, _gtml_ commands</url> embedded among HTML text.
+  <li>The optional <url>#project, _gtml_ project file</url>, which allows you
+      to manage a set of Web pages together.
+  <li><url>#special,Special <em>named constants</em></url> generated or used
+      by _gtml_. 
+  <li><url>#cmdline,Command-line options</url>.
+</ul>
+
+
+<!-- ==================== Commands ==================== -->
+
+<a name="commands"></a>
+<h2>Commands</h2>
+
+<p>The original syntax of _gtml_ was stolen shamelessly from the C
+language pre-processor, and has been adapted to suit Web site
+management. It supports the following commands:
+
+<ul>
+  <li><url>#include,<cmd>include</cmd></url>
+      - Include the contents of another file.
+  <li><url>#define,<cmd>define</cmd></url> and
+      <url>#newdefine, <cmd>newdefine</cmd></url>
+      - Create <em>named constants</em> which can be used as shorthand
+      definitions of frequently-used HTML segments.
+  <li><url>#undef,<cmd>undef</cmd></url>
+      - Remove a named constant.
+  <li><url>#timestamp,<cmd>timestamp</cmd></url> and
+      <url>#mtimestamp, <cmd>mtimestamp</cmd></url>
+      - Insert a formatted date/time stamp.  
+  <li><url>#literal,<cmd>literal</cmd></url>
+      - Turn off _gtml_ processing.
+  <li><url>#definechar,<cmd>definechar</cmd></url>
+      - Define characters (or strings) translations. 
+  <li><url>#entities,<cmd>entities</cmd></url>
+      - Convert special characters to HTML entities.
+  <li><url>#if,"<cmd>if, ifdef, ifndef, elsif, elsifdef, elsifndef, else, endif</cmd>"</url>
+      - Select sections of the source based on certain conditions.  
+  <li><url>#compress,<cmd>compress</cmd></url>
+      - Turn on file compression, eliminating HTML useless segments.
+  <li><url>#sitemap,<cmd>sitemap</cmd></url> and <url>#sitemap,<cmd>toc</cmd></url>
+      - Insert a map of all your site.
+</ul>
+
+<!-- -------------------- Syntax -------------------- -->
+
+<h3>Command syntax</h3>
+
+<p>There are two ways of writing commands:
+
+<ul>
+  <li>You can insert the commands directly, in which case they are preceded by
+      <car>#</car>, and must appear at the start of a separate line
+      (<strong>no preceeding spaces</strong>). Here's an example:<br>  
+#literal ON
+<pre>
+#include "header.txt"
+</pre>
+#literal OFF
+  <li>The other method is to embed the command inside an HTML comment. In this
+      case, the line must begin with <car>&lt;!-- ###</car>
+      followed by the command name, followed by the close-comment tag
+      <car>--&gt;</car>. Here's the same example in this format:<br>
+<pre>
+&lt;!-- ###include "header.txt" --&gt;
+</pre>
+</ul>
+
+<p>The first method is simpler, and is the recommended way of writing _gtml_
+, if possible. However, if you're using an HTML authoring tool which complains
+about _gtml_ commands, you can use the second method to <em>hide</em> the
+_gtml_ commands from the tool.
+
+
+<!-- -------------------- include -------------------- -->
+
+<label>include</label>
+<h3>#include</h3>
+
+<p>If you have some common text which you want inserted in more than one Web
+page, put it in a separate file - say, <file>common.txt</file>.
+Then, at the place where you want the text in each file, put the following
+line: 
+<pre>
+#literal on
+#include "common.txt"
+#literal off
+</pre>
+
+<p>_gtml_ replaces this line with the entire contents of the file
+<file>common.txt</file>. 
+
+<p>The name of the file can be defined in a named constant, as described next.
+
+<p>The directories in which the file may be looked for can be defined in a
+<url>#searchpath,special</url> named constant.
+
+
+<!-- -------------------- define -------------------- -->
+
+<label>define</label>
+<h3>#define</h3>
+
+<p>This is a simple way to create shorthand definitions - what we call
+<em>named constants</em>, or <em>macros</em> - for your frequently-used
+text. For some text which you use often - say, an e-mail address - include a
+line like this: 
+<pre>
+#literal on
+#define MY_EMAIL gihan@pobox.com
+#literal off
+</pre>
+
+<p>This defines a <em>named constant</em> <var>MY_EMAIL</var> and its
+<em>value</em> <samp>gihan@pobox.com</samp>. The value can be any text, 
+including spaces and HTML markup (leading spaces and tabs are ignored), as
+long as <strong>it's all on one line</strong> or <strong>it's all on
+multiple consecutives lines with a trailing <car>\</car> at the end of each
+lines, except the last</strong>. 
+
+<p>To use this named constant, whenever you want your e-mail address, 
+specify it like this:
+<pre>
+#entities ON
+     <<MY_EMAIL>>
+#entities OFF
+</pre>
+
+<p>The double angle-brackets tell _gtml_ to substitute this with its
+definition (You can
+<url>#delimiters,specify your own choice of delimiters</url>
+instead of the double-angle brackets). 
+
+<p>There are a few other things you should know about <cmd>#define</cmd>:
+
+<ul>
+  <li>Named constants can be set <url>#cmdline,from the command line</url>
+      when you run _gtml_. 
+
+  <li><strong>Nested definition values</strong><br>
+      The value of a named constant can itself contain other named constants, 
+      like this: 
+<pre>
+#entities ON      
+#literal on
+#define MAILTO <a href="mailto:<<MY_EMAIL>>">
+#literal off
+#entities OFF      
+</pre>
+      <p>_gtml_ will happily do both substitutions. <br>
+      <em>Note</em>: Definitions are evaluated at time of use, not time of
+      definition. This allows you to change the nested value to get a
+      different result. To get definitions body evaluated at time of
+      definition, you must use the <cmd>#define!</cmd> command.
+
+  <label>define!</label>
+  <li><strong>Nested definition names</strong><br>
+      If you want the <em>name</em> of a named constant to contain other named
+      constants, use <cmd>#define!</cmd> instead of
+      <cmd>#define</cmd>. For example, this sets the named constant
+      <var>A</var> to <samp>fred</samp>: 
+<pre>
+#entities on
+#literal on
+#define BLAH  A
+#define! <<BLAH>> fred
+#literal off
+#entities off
+</pre>
+      <p>(This doesn't achieve much here, but typically the second line is in
+      a separate file, which is included by the file with the first line). 
+
+  <label>define+</label>
+  <li><strong>Added values</strong><br>
+      If you want to add something to the definition of a named constant, use
+      <cmd>#define+</cmd>. For example, this sets the named constant
+      <var>A</var> to <samp>foobar</samp>:
+<pre>
+#literal on
+#define A foo
+#define+ A bar
+#literal off
+</pre>
+
+  <li><strong>Undefined values</strong><br>
+      If a named constant is not defined before it's used, its value is a
+      blank string.
+
+  <li><strong>Re-defining values</strong><br>
+      It's perfectly OK to have more than one <cmd>#define</cmd> for the
+      same named constant. You can use this to change the value of a named
+      constant part-way through the processing. 
+
+  <li><strong>Pre-defined values</strong><br>
+      _gtml_ <url>#special,creates some named constants</url>
+      for you automatically, such as the file name and links to the previous
+      and next files. 
+
+  <li><strong>Variables values</strong><br>
+      Sometimes the frequently-used text you want to shorthand may embed some
+      variable pieces. _gtml_ allows you to specify what the pieces are which
+      may vary, the same way the C language preprocessor does for macros with
+      arguments. Parameters are enclosed in parenthesis and seperated by a 
+      comma. For instance, this creates a shortand to make HTML links:
+<pre>
+#entities on
+#literal on
+#define url(x,y) <a href="mailto:x">y</a>
+#literal off
+#entities off
+</pre>
+      <p>Now the use of
+      <samp>
+      &lt;&lt;url(&lt;&lt;MY_EMAIL&gt;&gt;,Gihan)&gt;&gt;
+      </samp> will give: 
+<pre>
+#entities on
+<a href="mailto:gigan@pobox.com">Gihan</a>
+#entities off
+</pre>
+
+  <li><strong>Added variables values</strong><br>
+      If you add a variable valued definition with <cmd>#define+</cmd>, then
+      you <strong>add</strong> the parameter to the initial constant. For
+      instance, this adds a third parameter to the <var>url</var> macro: 
+<pre>
+#entities on
+#literal on
+#define+ url(x) <a href="http://x">Perera</a>
+#literal off
+#entities off
+</pre>
+      <p>Now guess what the following line will give:
+<pre>
+#entities on
+  <<url(<<MY_EMAIL>>,Gihan,www.pobox.com/~gihan)>>
+#entities off
+</pre>
+      <p>Yeah, you find:
+<pre>
+#entities on
+  <a href="mailto:gigan@pobox.com">Gihan</a><a href="http://www.pobox.com/~gihan">Perera</a>
+#entities off
+</pre>
+      <p>If you want to use commas in your arguments you just have to
+      <strong>quote the complete argument</strong> with single or double
+      quotes.      
+</ul>
+
+
+<!-- -------------------- newdefine -------------------- -->
+
+<label>newdefine</label>
+<label>newdefine!</label>
+<h3>#newdefine</h3>
+
+<p>This is identical to <url>#define,<cmd>#define</cmd></url>, except that the
+definition applies only if the named constant has not been defined already. If
+it has been defined, the old definition is unchanged. <cmd>#newdefine!</cmd>
+is identical to <cmd>#define!</cmd> with the same exception.
+
+
+<!-- -------------------- undef -------------------- -->
+
+<label>undef</label>
+<h3>#undef</h3>
+
+<p>Use this to remove the definition of a named constant:
+<pre>
+#undef MY_EMAIL
+</pre>
+
+<p>If the named constant didn't exist previously, this does nothing.
+
+
+<!-- -------------------- if -------------------- -->
+
+<label>if</label>
+<h3>#if, #ifdef, #ifndef, #elsif, #elsifdef, #elsifndef, #else, #endif</h3>
+
+<p>These commands are used together for conditional output:
+
+<ul>
+  <li><strong><cmd>#if &lt;&lt;FRED&gt;&gt; == foo</cmd></strong><br>
+      Process the following lines only if after substitution, the left and
+      right values are equal. Here if value of named constant
+      <var>FRED</var> is equal to <samp>foo</samp>. 
+      
+  <li><strong><cmd>#if foo != &lt;&lt;FRED&gt;&gt; </cmd></strong><br>
+      Process the following lines only if after substitution, the left and
+      right values are different. Here if value of named constant
+      <var>FRED</var> is different from <samp>foo</samp>. 
+
+  <li><strong><cmd>#ifdef FRED</cmd></strong><br>
+      Process the following lines only if the named constant <var>FRED</var>
+      is defined. 
+
+  <li><strong><cmd>#ifndef FRED</cmd></strong><br>
+      Process the following lines only if the named constant <var>FRED</var>
+      is <em>not</em> defined. 
+      
+  <li><strong><cmd>#elsif &lt;&lt;FRED&gt;&gt; == foo</cmd></strong><br>
+      If previous lines were not processed, then process the following lines
+      only if after substitution, the left and right values are equal. 
+
+  <li><strong><cmd>#elsif &lt;&lt;FRED&gt;&gt; != foo</cmd></strong><br>
+      If previous lines were not processed, then process the following lines
+      only if after substitution, the left and right values are different. 
+
+  <li><strong><cmd>#elsifdef FRED</cmd></strong><br>
+      If previous lines were not processed, then process the following lines
+      only if the named constant <var>FRED</var> is defined. 
+
+  <li><strong><cmd>#elsifndef FRED</cmd></strong><br>
+      If previous lines were not processed, then process the following lines
+      only if the named constant <var>FRED</var> is not defined. 
+
+  <li><strong><cmd>#else</cmd></strong><br>
+      The opposite effect of the most recent matching <cmd>#if</cmd>, 
+      <cmd>#ifdef</cmd>, <cmd>#ifndef</cmd>, <cmd>#elsif</cmd>, 
+      <cmd>#elsifdef</cmd> or <cmd>#elsifndef</cmd>. 
+
+  <li><strong><cmd>#endif</cmd></strong><br>
+      End a block of conditional output. Every <cmd>#if</cmd>, 
+      <cmd>#ifdef</cmd> or <cmd>#ifndef</cmd> must have a matching
+      <cmd>#endif</cmd> 
+</ul>
+
+<p>Conditional blocks can be nested.
+
+
+<!-- -------------------- timestamp -------------------- -->
+
+<label>timestamp</label>
+<h3>#timestamp</h3>
+
+<p>The special named constant <var>TIMESTAMP</var> evaluates to the current
+date and time. But to use it, you must tell _gtml_ what format to use to print
+the date/time.
+
+<p>The format string is specified in the <cmd>#timestamp</cmd> statement
+like this:
+
+<p>
+<pre>
+#literal on
+#timestamp   $dd/$MM/$yy at $hh:$mm:$ss
+#literal off
+</pre>
+
+<p>The value of <samp>&lt;&lt;TIMESTAMP&gt;&gt;</samp> will then be: 
+<samp>8/06/96 at 11:45:03</samp>.
+
+<p>As you can see, certain strings (like <code>$dd</code>) are replaced with
+values. The full set of substitution strings is as follows (everything else is
+left unchanged in the format string): 
+
+<p>
+<table cellpadding="5" border="1">
+  <tr><td>$hh</td>        <td>Hour (00 to 23)</td></tr>
+  <tr><td>$mm</td>        <td>Minute (00 to 59)</td></tr>
+  <tr><td>$ss</td>        <td>Seconds (00 to 59)</td></tr>
+  <tr><td>$Day</td>       <td>Full weekday name (Sunday to Saturday)</td></tr>
+  <tr><td>$Ddd</td>       <td>Short weekday name (Sun to Sat)</td></tr>
+  <tr><td>$dd</td>        <td>Day of the month (1 to 31)</td></tr>
+  <tr><td>$ddth</td>      <td>Day of the month with ordinal extension (1st to 31th)</td></tr>
+  <tr><td>$MM</td>        <td>Month number (1 to 12)</td></tr>
+  <tr><td>$Month</td>     <td>Full month name (January to December)</td></tr>
+  <tr><td>$Mmm</td>       <td>Short month name (Jan to Dec)</td></tr>
+  <tr><td>$yyyy</td>      <td>Year (e.g. 1996)</td></tr>
+  <tr><td>$yy</td>        <td>Short year (e.g. 96)</td></tr>
+</table>
+
+<p>Monthnames are output in English by default; but they can be output in
+other languages, according to the <url>#language,LANGUAGE special definition</url>.
+
+
+<!-- -------------------- mtimestamp -------------------- -->
+
+<label>mtimestamp</label>
+<h3>#mtimestamp</h3>
+
+<p>This is identical to <url>#timestamp,<cmd>timestamp</cmd></url>, except that
+the time used is not the current one, but the time the file was last modified. 
+
+
+<!-- -------------------- literal -------------------- -->
+
+<label>literal</label>
+<h3>#literal</h3>
+
+<p>The command <cmd>#literal ON</cmd> tells _gtml_ to stop interpreting lines
+beginning with <car>#</car> as _gtml_ commands, until the next <cmd>#literal
+OFF</cmd> line. Defined constants are still substituted, and
+<url>#entities,entities are translated</url> if desired.
+
+<p>For example, this is useful for bracketing blocks of C code, which might
+have lines beginning with <car>#</car>. 
+
+
+<!-- -------------------- entities -------------------- -->
+
+<label>entities</label>
+<h3>#entities</h3>
+
+<p>The command <cmd>#entities ON</cmd> tells _gtml_ to convert the
+characters <car>&lt;</car>, <car>&gt;</car> and <car>&amp;</car> into HTML
+entities so they aren't treated as part of HTML commands. Use <cmd>#entities
+OFF</cmd> to turn off 
+this conversion. 
+
+<p>This is useful for bracketing blocks of program code, which often contain
+these characters.
+
+
+<!-- -------------------- definechar -------------------- -->
+
+<label>definechar</label>
+<h3>#definechar</h3>
+
+<p>Basic HTML authorized characters may only be ASCII characters. Accentuated
+characters are coded in HTML in a certain way. For instance the <car>é</car>
+character is coded <car>&amp;eacute;</car>. You may want to input <car>é</car>
+in your source file, and have the right code used in your HTML file. This
+character's translation may be defined with the <cmd>#definechar</cmd>
+command, like in this example:
+<pre>
+#literal on
+#definechar &eacute; &amp;eacute;
+#literal off
+</pre>
+
+<p>Sometimes you might want to input special characters that are not available 
+on your keyboard, but do not want to input its HTML code (Think of the German
+<car>ß</car> on an English keyboard). For instance if you want all occurrances 
+of <car>ss</car> in your source file to be translated into <car>ß</car>, you 
+can use the <cmd>#definechar</cmd> command:
+<pre>
+#literal on
+#definechar ss &amp;szlig;
+#literal off
+</pre>
+
+
+<!-- -------------------- compress -------------------- -->
+
+<label>compress</label>
+<h3>#compress</h3>
+
+<p>The command <cmd>#compress ON</cmd> tells _gtml_ to begin producing
+compressed HTML code, i.e. stripping multiple spaces, removing newlines, HTML
+comments, and all other stuff useless for an HTML browser to render a
+page. This compression is done on the output file until the next <cmd>#compress
+OFF</cmd>.
+
+
+<!-- -------------------- sitemap -------------------- -->
+
+<label>sitemap</label>
+<h3>#sitemap, #toc</h3>
+
+<p>When you specify a <url>#hierarchy, hierarchy of pages</url> in your
+<url>#project,project file</url> you may insert a table of contents, or site map,
+of those pages, using the command <cmd>#sitemap</cmd>, or
+<cmd>#toc</cmd>.
+
+<p>See <url>#hierarchy,Document hierarchy</url> specifications for more
+information on how the list is created.
+
+
+<!-- ==================== Project files ==================== -->
+
+<label>project</label>
+<h2>_gtml_ project files</h2>
+
+<p>Because _gtml_ is most useful for managing multiple files, it's quite
+common to change something in a #include'd file, and then run _gtml_ on all
+the <car>.gtm</car> files which use it. 
+
+<p>To make this procedure easier, _gtml_ supports a concept of a <em>project
+file</em>. This is a simple text file with the extension <car>.gtp</car>. It
+can contain: 
+
+<ul>
+  <li><strong><cmd>define ...</cmd></strong><br>
+      As for <cmd><url>#define,#define</url></cmd> in a source file.
+  <li><strong><cmd>define! ...</cmd></strong><br>
+      As for <cmd><url>#define!,#define!</url></cmd> in a source file.
+  <li><strong><cmd>define+ ...</cmd></strong><br>
+      As for <cmd><url>#define+,#define+</url></cmd> in a source file.
+  <li><strong><cmd>newdefine ...</cmd></strong><br>
+      As for <cmd><url>#newdefine,#newdefine</url></cmd> in a source file.
+  <li><strong><cmd>newdefine! ...</cmd></strong><br>
+      As for <cmd><url>#newdefine!,#newdefine!</url></cmd> in a source file.
+  <li><strong><cmd>undef ...</cmd></strong><br>
+      As for <cmd><url>#undef,#undef</url></cmd> in a source file.
+  <li><strong><cmd>timestamp ...</cmd></strong><br>
+      As for <cmd><url>#timestamp,#timestamp</url></cmd> in a source file.
+  <li><strong><cmd>mtimestamp ...</cmd></strong><br>
+      As for <cmd><url>#mtimestamp,#mtimestamp</url></cmd> in a source file.
+  <li><strong><cmd>if ...</cmd></strong><br>
+      <strong><cmd>ifdef ...</cmd></strong><br>
+      <strong><cmd>ifndef ...</cmd></strong><br>
+      <strong><cmd>elsif ...</cmd></strong><br>
+      <strong><cmd>elsifdef ...</cmd></strong><br>
+      <strong><cmd>elsifndef ...</cmd></strong><br>
+      <strong><cmd>else</cmd></strong><br>
+      <strong><cmd>endif</cmd></strong><br>
+      As for <cmd>
+      <url>#if,"#if, #ifdef, #ifndef, #elsif, #elsifdef, #elsifndef, #else, #endif"</url></cmd>
+      in a source file.
+  <li><strong><cmd>definechar ...</cmd></strong><br>
+      As for <url>#definechar,#definechar</url> in a source file.
+  <li><strong><cmd>compress ...</cmd></strong><br>
+      As for <url>#compress,#compress</url> in a source file.
+  <li><strong><cmd>include ...</cmd></strong><br>
+      As for <url>#include,#include</url> in a source file, but only on project
+      files. 
+  <li><strong><code>// ...</code></strong><br>
+      Comment lines (the <car>//</car> must be the first characters on the line), which
+      are ignored. Blank lines are also ignored. 
+  <li><strong><cmd>allsource</cmd></strong><br>
+      This is a shorthand way of specifying all source files from the current
+      directory and sub-directories (recursively). 
+  <li><strong><cmd>filename alias file</cmd></strong><br>
+      This is used to make an alias to a file, so that you may use the alias, 
+      as a defined constant, instead of the filename itself in source
+      files. _gtml_ will compute the right relative path to the file in each
+      source file. This way you may move your files wherever you want, _gtml_
+      will be able to recreate your pages without having to modify the source
+      files.  
+  <li><file>filename.gtm</file><br>
+      All other lines are names of source files, which are processed by _gtml_
+      in turn.
+      <p>These files can be in other directories below the current
+      directory. Simply specify the file name relative to the current
+      directory (e.g. <samp>sub/fred/index.gtm</samp>).
+      <p>The file can be a defined alias filename. In this case use it as a
+      filenamed constant, e.g.
+<pre>
+   filename FOO bar/foo
+#entities ON
+   <<FOO>>
+#entities OFF
+</pre>
+      <p>The file name can be followed by a level number and a title, to be
+      used in <url>#hierarchy,creating a hierarchy of documents</url>. In
+      this case the file is processed after the project file has been
+      completely read (in order to have the complete document hirearchy).
+  <li><strong><cmd>hierarchy</cmd></strong><br>
+      This is used to process all files of the declared hierarchy so far, so
+      that you may process those files more than once, if you want to change 
+      some named constant values between each process. If not used
+      files of the hierarchy are processed after the project file has been
+      entirely read.
+</ul>
+
+<p>When you run _gtml_ with the project file as a command-line argument, it
+will process all the source files in the project file. They will all inherit
+the <cmd>define</cmd>, <cmd>definechar</cmd> and <cmd>timestamp</cmd>
+values, if any, in the project file. The <cmd>mtimestamp</cmd> value will  
+change according to the modification date of the appropriate source file.
+
+<p>You may use a project file, but process only selected source files
+(declared in the project) with the
+<url>#optionf, <car>-F</car> command line argument</url>.
+
+<p>Note that <cmd>#define</cmd>, <cmd>#newdefine</cmd> and
+<cmd>#undef</cmd> commands inside a file are local to that file - they don't
+carry over to the next file in the project. However, named constants defined
+in the project file are inherited by all files in the project.
+
+
+<!-- -------------------- Hierarchy -------------------- -->
+
+<label>hierarchy</label>
+<h3>Document hierarchy</h3>
+
+<p>_gtml_ allows you to create a hierarchy of Web pages, with links between
+them. Each Web page can have a link to the previous page, the next page, or
+one level up in the hierarchy. Obviously, some of these links don't apply to
+some pages - _gtml_ generates only those that apply to each page.
+
+
+<h4>Describing the hierarchy</h4>
+
+<p>You describe the document hierarchy to _gtml_ by listing the file names in
+the project file in a certain order, with a document level and title for
+each. Level 1 is for top-level documents, and 2, 3, 4, and so on are lower
+levels. File names without a level have no hierarchical information attached
+to them. 
+
+<p>When _gtml_ processes a file, it defines special named constants which can
+be used in exactly the same way as <url>#define,other named constants</url>.
+
+<p>For each file, _gtml_ generates the named constants, 
+<var>LINK_PREV</var>, 
+<var>LINK_NEXT</var> and
+<var>LINK_UP</var>. These correspond to the file names of the previous file, 
+next file and one level up in the hierarchy. In addition, it also generates
+the corresponding named constants 
+<var>TITLE_PREV</var>, 
+<var>TITLE_NEXT</var>, 
+<var>TITLE_UP</var> and
+<var>TITLE_CURRENT</var> to be the titles of these files (As stated above, 
+the title follows the level number in the project file).
+
+<p>Some of these named constants may not be applicable to some files, in which
+case the named constant is not defined for that file. 
+
+
+<h4>Example</h4>
+
+<p>Here's an extract from a hypothetical _gtml_ project file:
+
+<pre>
+    contents.gtm 1 Table of Contents
+    chapter1.gtm 2 Introduction
+    sec11.gtm    3 What's the Problem
+    sec12.gtm    3 Old Approaches
+    sec13.gtm    3 New Idea
+    chapter2.gtm 2 Historical Evidence
+    sec21.gtm    3 Early 1900's
+    sec22.gtm    3 Recent Findings
+    chapter3.gtm 2 Our Bright Idea
+</pre>
+
+<p>To take a simple case, the file <file>sec21.gtm</file> will have
+<cmd>LINK_NEXT</cmd> set to <file>sec22.html</file> (and <cmd>TITLE_NEXT</cmd>
+set to <em>Recent Findings</em>) and <var>LINK_UP</var> set to
+<file>chapter2.html</file> (and <var>TITLE_UP</var> set to <em>Historical
+Evidence</em>). <var>LINK_PREV</var> and <var>TITLE_PREV</var> will be
+undefined.
+
+
+<h4>Using the links</h4>
+
+<p>The links can be used to create <em>navigation links</em> between the
+documents. In other words, each document can have links up the
+hierarchy and to the next and previous documents.
+
+<p>Typically, you would place the navigation information in a common file and
+<cmd>#include</cmd> it into each _gtml_ source file. The _gtml_
+<cmd>#ifdef</cmd> command can be used to exclude links which don't apply to
+a particular file. 
+
+<p>Here's a simple example:
+<pre>
+#entities on
+#literal ON
+#ifdef LINK_NEXT
+   <p>Next document: <a href="<<LINK_NEXT>>"><<TITLE_NEXT>></a>
+#endif
+#ifdef LINK_PREV
+   <p>Previous document: <a href="<<LINK_PREV>>"><<TITLE_PREV>></a>;
+#endif
+#ifdef LINK_UP
+   <p>Up one level: <a href="<<LINK_UP>>"><<TITLE_UP>></a>;
+#endif
+#literal OFF
+#entities off
+</pre>
+
+<label>toc</label>
+<h4>Creation of table of contents</h4>
+
+<p>When you have described a document hierarchy, and you use a
+<url>#sitemap, <cmd>#toc</cmd> or <cmd>#sitemap</cmd></url> command into your
+source file, _gtml_ includes a sitemap generated as a list with the help of the 
+<var>__TOC_#__(x)</var>, and <var>__TOC_#_ITEM__(x,y)</var> special named
+constants (<car>#</car> being a file level).
+
+<p>With the previous example it gives:
+<pre>
+#entities on
+<<__TOC_1__('
+  <<__TOC_1_ITEM__('contents.html','Table of Contents')>>
+  <<__TOC_2__('
+    <<__TOC_2_ITEM__('chapter1.html','Introduction')>>
+    <<__TOC_3__('
+      <<__TOC_3_ITEM__('sec11.html','What's the Problem')>>
+      <<__TOC_3_ITEM__('sec12.html','Old Approaches')>>
+      <<__TOC_3_ITEM__('sec13.html','New Idea')>>
+    ')>>
+    <<__TOC_2_ITEM__('chapter2.html','Historical Evidence')>>
+    <<__TOC_3__('
+      <<__TOC_3_ITEM__('sec21.html','Early 1900's')>>
+      <<__TOC_3_ITEM__('sec22.html','Recent Findings')>>
+    ')>>
+  ')>>
+')>>
+#entities off
+</pre>
+
+<p><var>__TOC_#__(x)</var>, and <var>__TOC_#_ITEM__(x,y)</var> have
+the following default values:
+
+<pre>
+#entities on
+#literal on
+#define __TOC_#__(x)        <ul>x</ul>
+#define __TOC_#_ITEM__(x,y) <li><a href="x">y</a>
+#literal off
+#entities off
+</pre>
+
+<p>You may redefine this constant to whatever you want as long as you respect
+the number of variables.
+
+    
+<!-- ==================== Special Macros ==================== -->
+
+<label>special</label>
+<h2>Special definitions</h2>
+
+    
+<h4>Environment</h4>
+<p>All environment variables are defined as named constants by _gtml_.
+
+
+<h4>Current file names</h4>
+
+<p>The special named constants <var>ROOT_PATH</var>, <var>BASENAME</var>, 
+<var>FILENAME</var> and <var>PATHNAME</var> are set to the current 
+path to root of the project (where the project file resides), output file name
+without any extension and excluding any directory path information, output
+file name excluding any directory path information, and directory path
+information relative to the path to the root of the project. 
+
+
+<label>searchpath</label>
+<h4>Search path for include files</h4>
+
+<p>_gtml_ always searches for include files in the directory of the processed
+source file first, then the current directory (where the _gtml_ command is
+executed). 
+
+<p>In addition, if you define the named constant <var>INCLUDE_PATH</var>, 
+_gtml_ will interpret it as a list of directories (separated by colons), to
+search for include files. Those directories may be absolute, or relative to
+the root path of the project.
+
+
+<h4>Output directory</h4>
+
+<p>By default, _gtml_ writes its output files to the same directory as the
+corresponding source file. You can override this by defining the named
+constant <var>OUTPUT_DIR</var> as the name of the output directory.
+
+<p>If you are doing this with a project file, specify <var>OUTPUT_DIR</var>
+as the top-level output directory. _gtml_ will create the same directory
+hierarchy for the output files as for the input files (It creates
+sub-directories as required).
+
+
+<label>extension</label>
+<h4>Output suffix</h4>
+
+<p>By default all created files are created by changing the <ext>.gtm</ext>, or
+<ext>.gtml</ext> extension of the source file to the <ext>.html</ext> one.
+
+<p>You may change this behavior by defining the special constant
+<var>EXTENSION</var> to whatever extension you want.
+
+<p>The definition of this constant does not have sense in a source file, since
+the output file is already created the moment GTML starts to parse the source 
+file. It makes sense however to define it in the 
+<url>#project,project file</url> or on the <url>#cmdline,command line</url>. 
+
+<p>If the suffix is preceded by two dots as in <file>gtml.css..gtm</file>, then the
+source suffix is not replaced, but just removed, as in <file>gtml.css</file>.
+
+
+<h4>Fast generation</h4>
+
+<p>_gtml_ only processes files which are younger than the output files which 
+they might produce. 
+This is very useful, as it increases the generation speed of web
+sites with a big number of pages, when only one of them has been changed. Same
+kind of the way <code>make</code> works.
+
+<p>To enable this feature you just have to define the special constant
+<var>FAST_GENERATION</var>. The use of this constant will work only in
+<url>#project,_gtml_ project files</url> or on the <url>#cmdline,command line</url>.
+
+<p>This feature does not take into account included files, but only the main
+gtml source, and the wanted output. To deal with more complex file
+dependencies you may use the <code>make</code> tool in conjunction with the
+<url>#optionf,<car>-F</car></url> and
+<url>#optionm,<car>-M</car></url> command line arguments.
+
+
+<label>language</label>
+<h4>Language localisation</h4>
+
+<p>By default all timestamps produce monthnames and daynames which are output 
+in English. You can output them in other languages by defining the constant 
+<var>LANGUAGE</var> to a value corresponding to an available language.
+
+<p>As of today seven languages are available. The default one is
+English. Following is the list of those language with the corresponding value
+for <var>LANGUAGE</var> constant:
+<ul>
+  <li><code>fr</code> for French ;
+  <li><code>de</code> for German ;
+  <li><code>ie</code> for Irish ; 
+  <li><code>it</code> for Italian ;
+  <li><code>nl</code> for Dutch ;
+  <li><code>no</code> for Norvegian ;
+  <li><code>se</code> for Swedish.
+</ul>
+
+<p>If you can send me month and day names in other languages, just do it, I
+will integrate it in following versions of _gtml_.
+
+
+<label>delimiters</label>
+<h4>Substitution delimiters</h4>
+
+<p>The default delimiters for substituting named constants are
+<car>&lt;&lt;</car> and <car>&gt;&gt;</car>. You can change these to any
+other strings by defining the named constants <var>OPEN_DELIMITER</var> and
+<var>CLOSE_DELIMITER</var> respectively. 
+
+<p>For example, if you had the following lines:
+
+<pre>
+#literal ON
+#define OPEN_DELIMITER {{
+#define CLOSE_DELIMTER }}
+
+#define MY_EMAIL  gihan@pobox.com
+#literal OFF
+</pre>
+
+<p>then GTML substitutes <var>MY_EMAIL</var> when it finds the text
+<samp>{{MY_EMAIL}}</samp> instead of the default
+<samp>&lt;&lt;MY_EMAIL&gt;&gt;</samp>. 
+
+
+<h4>Document hierarchy links</h4>
+
+<p>As described above, _gtml_
+<url>#hierarchy,defines several named constants</url> for links between documents.
+
+
+<h4>Embedded Perl code</h4>
+
+<p>You may embed Perl code into your _gtml_ source file, and have the result
+of the last evaluated expression inserted in your output file, with the help of
+the one argument macro <var>__PERL__</var>.
+
+<p>Here is an example inserting the size of the source file:
+<pre>
+#entities on
+<<__PERL__(return (stat(<<ROOT_PATH>><<BASENAME>>.".gtm"))[7];)>>
+#entities off
+</pre>
+
+
+<h4>Embedded system command code</h4>
+
+<p>You may embed system command output into your _gtml_ source file, with the help of
+the one argument macro <cmd>__SYSTEM__</cmd>.
+
+<p>Here is an example inserting the list of files in the current directory:
+<pre>
+#entities on
+<<__SYSTEM__(dir)>>
+#entities off
+</pre>
+
+
+<!-- ==================== Command-line ==================== -->
+
+<label>cmdline</label>
+<h2>Command-line arguments</h2>
+
+
+<!-- -------------------- -D -------------------- -->
+
+<label>optiond</label>
+<h3>-D</h3>
+
+<p>When you run _gtml_ from the command line, you can define named constants 
+like this:
+<p><samp>-DMY_EMAIL=fred</samp>
+
+<p>This is the same as <samp>#define MY_EMAIL fred</samp> in the file.
+
+<p>These definitions can occur anywhere within the command-line options, 
+but only affect the files <em>after</em> them. For example, if your
+command line is:
+<pre>
+perl gtml.pl fred.gtm -DMY_EMAIL=fred bill.gtm harry.gtm
+</pre>
+
+<p>then the <var>MY_EMAIL</var> definition doesn't apply to
+<file>fred.gtm</file>. 
+
+
+<!-- -------------------- -F -------------------- -->
+
+<label>optionf</label>
+<h3>-F</h3>
+
+<p>When you run _gtml_ from the command line on a project file you may want
+to process only some of the files used in it. This may be very useful in
+conjunction with <code>make</code> for page regeneration based on complex
+files dependencies (induced by <cmd>#include</cmd> commands).
+
+<p>To process only one file of a project you can use the <car>-F</car>
+argument followed by the name of the file to process. File to be processed
+must appear, on the command line, before the project file it appears in.
+
+<p>Let us suppose we have this project file, called <file>foo.gtp</file>:
+<pre>
+// Beginning of foo.gtp
+define MAIL beaufils@lifl.fr
+
+foo.gtm
+bar.gtm
+// End of foo.gtp
+</pre>
+
+<p>If you just want to regenerate the <file>bar.html</file> file your command
+line will be:
+<pre>
+perl gtml -Fbar.gtm foo.gtp
+</pre>
+
+<p>List of files to processed is cleared after each project file treatment.
+
+
+<!-- -------------------- -M -------------------- -->
+
+<label>optionm</label>
+<h3>-M</h3>
+
+<p>When you run _gtml_ with the <car>-M</car> command line argument, _gtml_
+process project and source files, but do not produce ouput files. _gtml_
+generates a makefile ready to create output files.
+
+<p>If you do not specify a filename, the generated makefile is created under
+the <file>GNUmakefile</file> name.
+
+<p>To specify a filename, just add it after the <car>-M</car> argument, with a
+colon between the option and the file name.
+
+
+<!-- -------------------- -h -------------------- -->
+
+<label>optionh</label>
+<h3>-h, --help</h3>
+
+<p>To get a small command line usage description you can use the
+<car>-h</car>, or <car>--help</car> command line argument.
+
+
+<!-- -------------------- --silent -------------------- -->
+
+<label>optionv</label>
+<h3>--silent</h3>
+
+<p>If you specify the <car>--silent</car> command line argument, _gtml_ will
+produce no processing information during its work.
+
+
+<!-- -------------------- --version -------------------- -->
+
+<label>optionv</label>
+<h3>--version</h3>
+
+<p>To get the version number of the _gtml_ you are currently using you can
+use the <car>--version</car> command line argument.
+
+#include "footer" 
