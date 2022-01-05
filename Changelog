@@ -1,0 +1,153 @@
+Version 3.6.0     unreleased
+
+	* Fork long-abandoned SourceForge code to GitHub.
+	* Adjust license info in LICENSE and CREDITS so GitHub can find it.
+	* Convert README to README.md, add background info, and extract docs/HISTORY.md.
+	* Move most existing files and documentation underneath docs/sourceforge.
+	* Create Changelog based on the original NEWS.html from SourceForge.
+
+Version 3.5.4 		29 Oct 2004
+
+	* Fixed several 'if'-related bugs:
+		* In nested #if's, when the outer condition was false the first #endif would end the whole set of #if's.
+		* #if true ... #elsif false ... #else would execute the #else clause.
+	   * There was no error checking for missing #if's, multiple #else's, or missing #endif's.
+	* Macros in INCLUDE_PATH are now resolved.
+
+Version 3.5.3 		13 Sep 1999
+
+	* Fixed a bug with compression.
+	* Better $ddth (english) computation.
+	* Exit status changed (0 for warnings and OK, 1 for errors).
+
+Version 3.5.2 		08 Sep 1999
+
+	* Fixed a bug with conditional output (if/elsif).
+	* Added irish support.
+	* Remove include file name report.
+	* All documentations has been corrected thanks to Ken Guest.
+
+Version 3.5.1 		02 Sep 1999
+
+	* Fixed a bug with PATHNAME creation, and thus included file searching.
+
+Version 3.5.0 		02 Sep 1999
+
+	* Fixed a lot of bugs, while rewritting the code.
+	* Added makefile generation.
+	* Enhanced timestamp support.
+	* Added customizable sitemap generation.
+	* Modified ouput file extension setting.
+	* Added characters translation.
+	* Added embedded Perl code possibility.
+	* Added embedded shell command output possibility.
+	* Documented output compression.
+	* Updated documentation.
+	* Added some new predefined constants.
+	* Added macro with arguments.
+	* Enhanced conditionals.
+	* Enhanced inclusion in project files.
+	* Enhanced timestamps support.
+
+Version 3.3.6 		14 Jul 1999
+
+	* Added German support.
+
+Version 3.3.5 		13 Jul 1999
+
+	* Fixed another bug with filename aliases.
+
+Version 3.34 		10 Jul 1999
+
+	* Added Dutch support.
+
+Version 3.33 		09 Jul 1999
+
+	* Fixed a serious bug with filename aliases (thank's to Jens).
+
+Version 3.32 		08 Jul 1999
+
+	* Fixed a bug with filename aliases.
+	* Added Italian and Swedish support.
+
+Version 3.31 		07 Jul 1999
+
+	* Added Norwegian language support.
+
+Version 3.3 		07 Jul 1999
+
+	* Fixed a bug with directory creation, thanks to Magog.
+	* Added undefined constants in project file, a PhM request.
+	* Added the -F command line argument, to process only single file, enabling the use of <code>make</code> (On a suggestion from PhM).
+	* Added the GNU -h, --help and --version command line arguments.
+
+Version 3.2 		04 Jul 1999
+
+	* Added usage of "FAST_GENERATION" to process only files which sources are newer than output.
+
+Version 3.1 		01 Jul 1999
+
+	* Added definitions of all environment variables.
+	* Added substitution at definition time for OUTPUT_DIR, INCLUDE_PATH and EXTENSION.
+
+Version 3.0 		22 Jun 1999
+
+	* Added mtimestamp.
+	* Added usage of "LANGUAGE".
+	* Added usage of "EXTENSION".
+	* Added filename alias definitions.
+	* Fixed a bug with links and subdir.
+	* Fixed a bug with entities.
+
+Version 2.3 		19 Feb 1999
+
+	* Enhanced #define (Wim Niemans Ri).
+
+Version 2.22 		25 Jul 1998
+
+	* Handles years past 2000.
+
+Version 2.21 		02 Feb 1998
+
+	* Simplified auto-generated navigation links.
+
+Version 2.2 		15 Aug 1997
+
+	* "allsource" command in project file.
+
+Version 2.1 		23 Jul 1997
+
+	* Allow subs in #include.
+	* Don't downshift file names. (Suggestions from Mike Sendall).
+
+Version 2.02 		10 Feb 1997
+
+	* Fixed #ifdef nesting. (Alan B. Chamberlin)
+
+Version 2.01 		30 Nov 1996
+
+	* Commands can be inside comments.
+	* User-specified substitute delimiters.
+
+Version 2.0 		24 Nov 1996
+
+	* Added lots of new features.
+
+Version 1.03 		1 Sep 1996
+
+	* No quotation marks in #include file name is OK.
+	* Allow ../ to higher levels than starting directory.
+
+Version 1.02 		14 Jul 1996
+
+	* Support path names in project file.
+
+Version 1.01 		14 Jun 1996
+
+	* Added #newdefine.
+	* Allow undefined constants.
+
+Version 1.0 		08 Jun 1996
+
+	* First release.
+
