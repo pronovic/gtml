@@ -2,7 +2,7 @@
 #
 # Program:      gtml
 #
-# Version:      3.5.4 (See NEWS file for revision history)
+# Version:      3.6.0
 #
 # Description:  gtml is a program to manage groups of HTML files with
 #               similar properties.
@@ -13,17 +13,19 @@
 #                   Bruno Beaufils <beaufils@lifl.fr>
 #               version 3.5.4
 #                   Andrew E. Schulman <schulman@users.sourceforge.net>
-#               (see CREDITS file for complete list of contributors)
+#               version 3.6.0+
+#                   Kenneth J. Pronovici <pronovici@ieee.org>
 #
 # Documentation and updates for this program are available at:
 #
-#     http://sourceforge.net/projects/gtml
+#     https://github.com/pronovic/gtml
 #
 # Copying and Distribution:
 #
 # Copyright (C) 1996-1999 Gihan Perera
 # Copyright (C) 1999 Bruno Beaufils
 # Copyright (C) 2004 Andrew E. Schulman
+# Copyright (C) 2022 Kenneth J. Pronovici
 #
 # This program is free software; you can redistribute it and/or  modify it
 # under the terms of the GNU General Public License as published by the Free
@@ -750,8 +752,6 @@ NOTES:
    this order, allowing one to add/modify default behavior of gtml.
 
    Exit status is 1 if errors have been encountered, and 0 if all was OK.
-
-Report bugs at http://sourceforge.net/projects/gtml/.
 ");
 }
 
@@ -761,15 +761,15 @@ Report bugs at http://sourceforge.net/projects/gtml/.
 sub ShowVersion
 {
     print (
-"GTML version 3.5.4,
+"GTML version 3.6.0,
 Copyright (C) 1996-1999 Gihan Perera
 Copyright (C) 1999 Bruno Beaufils
 Copyright (C) 2004 Andrew E. Schulman
+Copyright (C) 2022 Kenneth J. Pronovici
 
 GTML comes with ABSOLUTELY NO WARRANTY;
-This is free software, and you are welcome to redristribute it
-under the conditions defined in the GNU General Public License;
-See the README or COPYING file for details.
+This is free software, and you are welcome to redistribute it
+under the conditions defined in the GNU General Public License.
 "); #'
 }
 
