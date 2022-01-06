@@ -6,7 +6,7 @@ The code is manually built and released in GitHub.  I don't release often enough
 1. Set up release information:
 
 ```
-$ export GTML_VERSION=3.6.0
+$ export GTML_VERSION=3.6.1
 $ export GTML_DATE=$(date +'%d %b %Y')
 ```
 
@@ -16,7 +16,7 @@ $ export GTML_DATE=$(date +'%d %b %Y')
 $ sed -i "s/^Version $GTML_VERSION\s\s*unreleased/Version $GTML_VERSION     $GTML_DATE/g" Changelog
 $ sed -i "s/^# Version:.*$/# Version:      $GTML_VERSION/g" gtml
 $ sed -i "s/^\"GTML version .*,$/\"GTML version $GTML_VERSION,/g" gtml
-$ git commit -m "Release $GTML_VERSION" Changelog
+$ git commit -m "Release $GTML_VERSION" Changelog gtml
 $ git push
 ```
 
