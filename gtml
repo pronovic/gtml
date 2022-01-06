@@ -1911,6 +1911,11 @@ sub ProcessLines
         #
         elsif ( /^#include/ )
         {
+            local( $my_prev_literal_setting ) = $literal;
+            if( /^#includeliteral/ )
+            {
+                $literal = 1;
+            }
             chop;
             if ( $compression ) 
             { 
@@ -1918,7 +1923,7 @@ sub ProcessLines
             }
 
             &Substitute();
-            s/^#include[ \t]*"//;
+            s/^#include(literal)?[ \t]*"//;
             s/".*$//; #"
             $file = $_;
             $file = &ResolveIncludeFile($file);
@@ -1928,6 +1933,7 @@ sub ProcessLines
 # TODO #                &Notice("    --- $file\n");
                 &ProcessLines($file);
             }
+            $literal = $my_prev_literal_setting;
             next;
         }
         #

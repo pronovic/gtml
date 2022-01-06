@@ -89,6 +89,10 @@ The name of the file can be defined in a named constant, as described next.
 
 The directories in which the file may be looked for can be defined in a special named constant.
 
+### `#includeliteral`
+
+Works the same as `#include` but also turns on `#literal` so GTML does not interpret a given file, just includes it.
+
 ### `#define`
 
 This is a simple way to create shorthand definitions - what we call _named constants_, or _macros_ - for your frequently-used text. For some text which you use often - say, an e-mail address - include a line like this:
