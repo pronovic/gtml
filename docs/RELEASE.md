@@ -14,6 +14,7 @@ $ export GTML_DATE=$(date +'%d %b %Y')
 ```
 $ sed -i "s/^Version $GTML_VERSION\s\s*unreleased/Version $GTML_VERSION     $GTML_DATE/g" Changelog
 $ git commit -m "Release $GTML_VERSION" Changelog
+$ git push
 ```
 
 3. Build the tarball
