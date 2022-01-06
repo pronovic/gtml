@@ -91,7 +91,7 @@ The directories in which the file may be looked for can be defined in a special 
 
 ### `#includeliteral`
 
-Works the same as `#include` but also turns on `#literal` so GTML does not interpret a given file, just includes it.  This is equivalent to putting `#literal ON` as first line of the included file and then `#literal OFF` as the last line of the included file.
+Works the same as `#include` but also turns on `#literal` so GTML does not interpret a given file, just includes it.  This is equivalent to putting `#literal ON` as the first line of the included file and then `#literal OFF` as the last line of the included file.
 
 ### `#define`
 
