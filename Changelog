@@ -1,4 +1,4 @@
-Version 3.6.1     unreleased
+Version 3.6.1     06 Jan 2022
 
 	* Fork long-abandoned SourceForge code to GitHub.
 	* Adjust license info in LICENSE and CREDITS so GitHub can find it.

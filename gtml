@@ -2,7 +2,7 @@
 #
 # Program:      gtml
 #
-# Version:      3.6.0
+# Version:      3.6.1
 #
 # Description:  gtml is a program to manage groups of HTML files with
 #               similar properties.
@@ -761,7 +761,7 @@ NOTES:
 sub ShowVersion
 {
     print (
-"GTML version 3.6.0,
+"GTML version 3.6.1,
 Copyright (C) 1996-1999 Gihan Perera
 Copyright (C) 1999 Bruno Beaufils
 Copyright (C) 2004 Andrew E. Schulman
