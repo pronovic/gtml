@@ -2,6 +2,12 @@
 
 GTML is a simple yet powerful HTML pre-processor written in Perl.  Its syntax is very close to the C language preprocessor, and it supports macros, conditional processing, file inclusion, sitemap generation, and more.  It was designed in the 1990s, for a world where HTML files were still regularly maintained by hand, but some of us still find it useful today.
 
+# Purpose of this Repository
+
+This repository is meant to offer a reliable home for the gtml source code, and a place to report bugs if necessary. SourceForge is a mess, and isn't really viable for that purpose any more.
+
+This source code is more than 25 years old.  At this point in its lifecycle, my primary goal is stability for existing users.  I do not intend to implement _or maintain_ any feature requests or enhancements myself.  However, I _will_ accept pull requests for new features.  New features must follow the existing code style and must maintain 100% backwards compatibility in the behavior of existing features.  The submitter must agree to maintain and support their new feature.
+
 ## History
 
 GTML was originally written in 1996 by Gihan Perera and was enhanced starting in 1999 by Bruno Beaufils.  In 2004, Andrew E. Schulman took it over and moved the code to [SourceForge](http://gtml.sourceforge.net), where older releases still live today.  I have maintained the [Debian package for GTML](https://salsa.debian.org/debian/gtml) since 2010.  In 2014, Andrew communicated to me that he had abandoned the code, so I began to maintain the Debian packages independently.  In early 2022, Bruno and I got some questions about GTML from a user.  I decided to fork the code to GitHub so there would be a real home for it again.  
