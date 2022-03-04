@@ -10,7 +10,7 @@ This source code is more than 25 years old.  At this point in its lifecycle, my 
 
 ## History
 
-GTML was originally written in 1996 by Gihan Perera and was enhanced starting in 1999 by Bruno Beaufils.  In 2004, Andrew E. Schulman took it over and moved the code to [SourceForge](http://gtml.sourceforge.net), where older releases still live today.  I have maintained the [Debian package for GTML](https://salsa.debian.org/debian/gtml) since 2010.  In 2014, Andrew communicated to me that he had abandoned the code, so I began to maintain the Debian packages independently.  In early 2022, Bruno and I got some questions about GTML from a user.  I decided to fork the code to GitHub so there would be a real home for it again.  
+GTML was originally written in 1996 by Gihan Perera and was enhanced starting in 1999 by Bruno Beaufils.  In 2004, Andrew E. Schulman took it over and moved the code to [SourceForge](https://sourceforge.net/projects/gtml/), where older releases still live today.  I have maintained the [Debian package for GTML](https://salsa.debian.org/debian/gtml) since 2010.  In 2014, Andrew communicated to me that he had abandoned the code, so I began to maintain the Debian packages independently.  In early 2022, Bruno and I got some questions about GTML from a user.  I decided to fork the code to GitHub so there would be a real home for it again.  
 
 The [`HISTORY.md`](docs/HISTORY.md) file contains some additional history taken from the original `README` file on SourceForge.  The original website on SourceForge is maintained using GTML itself, and the source code for that website is found in the [`docs/sourceforge/src`](docs/sourceforge/src) directory.
 
