@@ -2,7 +2,7 @@
 
 GTML is a simple yet powerful HTML pre-processor written in Perl.  Its syntax is very close to the C language preprocessor, and it supports macros, conditional processing, file inclusion, sitemap generation, and more.  It was designed in the 1990s, for a world where HTML files were still regularly maintained by hand, but some of us still find it useful today.
 
-## Purpose of this Repository
+## Bug Reports & Feature Requests
 
 This repository is meant to offer a reliable home for the gtml source code, and a place to report bugs if necessary. SourceForge is a mess, and isn't really viable for that purpose any more.
 
